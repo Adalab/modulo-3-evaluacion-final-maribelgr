@@ -3,6 +3,7 @@ import api from "../services/api";
 import "../stylesheets/App.css";
 import CharacterList from "./CharacterList";
 import Filters from "./Filters";
+import Header from "./Header";
 
 class App extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ class App extends React.Component {
 
     return (
       <div className="App">
+        <Header />
         <Filters handleInputChange={this.handleInputChange} />
         <CharacterList data={filteredCharacter} />
       </div>
