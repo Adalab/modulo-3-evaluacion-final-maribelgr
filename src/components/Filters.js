@@ -5,8 +5,14 @@ const Filters = (props) => {
   const handleInputChange = (ev) => {
     props.handleInputChange(ev);
   };
+
+  //Submit intro
+  const handleFormSubmit = (ev) => {
+    ev.preventDefault();
+  };
+
   return (
-    <form>
+    <form onSubmit={handleFormSubmit}>
       <input
         type="text"
         name="name"
