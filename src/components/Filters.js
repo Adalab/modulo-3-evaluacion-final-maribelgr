@@ -19,6 +19,7 @@ const Filters = (props) => {
         id="name"
         placeholder="Busca aquí tu personaje"
         onChange={handleInputChange}
+        value={props.inputValue}
       ></input>
     </form>
   );

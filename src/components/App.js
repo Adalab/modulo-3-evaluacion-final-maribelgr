@@ -22,6 +22,11 @@ class App extends React.Component {
   //Función del evento
   handleInputChange = (ev) => {
     this.setState({ inputText: ev.target.value });
+    localStorage.setItem("inputText", ev.target.value);
+  };
+
+  handleBack = (inputText) => {
+    this.setState({ inputText });
   };
 
   renderDetail = (props) => {
@@ -31,7 +36,12 @@ class App extends React.Component {
       return parseInt(routeCharacterId) === character.id;
     });
     console.log(foundCharacter);
-    return <CharacterDetail characterInfo={foundCharacter} />;
+    return (
+      <CharacterDetail
+        characterInfo={foundCharacter}
+        onBack={this.handleBack}
+      />
+    );
   };
 
   render() {
@@ -46,7 +56,10 @@ class App extends React.Component {
         <Header />
         <Switch>
           <Route exact path="/">
-            <Filters handleInputChange={this.handleInputChange} />
+            <Filters
+              handleInputChange={this.handleInputChange}
+              inputValue={this.state.inputText}
+            />
             <CharacterList data={filteredCharacter} />
           </Route>
           <Route
