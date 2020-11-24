@@ -6,15 +6,10 @@ const CharacterDetail = (props) => {
   const { image, name, status, species, origin = {}, episode = [], id } =
     props.characterInfo || {};
 
-  //Cojo valor que tengo en mi padre y lo guardo en una constante
-  const handleBack = () => {
-    const localValue = localStorage.getItem("inputText");
-    props.onBack(localValue);
-  };
   return (
     <div>
       <Link to="/">
-        <button onClick={handleBack}>Volver</button>
+        <button>Volver</button>
       </Link>
       {props.characterInfo ? (
         <div>

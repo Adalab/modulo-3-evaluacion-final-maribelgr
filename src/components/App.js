@@ -25,10 +25,6 @@ class App extends React.Component {
     localStorage.setItem("inputText", ev.target.value);
   };
 
-  handleBack = (inputText) => {
-    this.setState({ inputText });
-  };
-
   renderDetail = (props) => {
     const routeCharacterId = props.match.params.characterId;
     console.log(routeCharacterId);
