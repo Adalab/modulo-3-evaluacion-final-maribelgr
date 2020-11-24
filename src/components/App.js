@@ -1,9 +1,11 @@
 import React from "react";
 import api from "../services/api";
+import { Link, Route, Switch } from "react-router-dom";
 import "../stylesheets/App.css";
 import CharacterList from "./CharacterList";
 import Filters from "./Filters";
 import Header from "./Header";
+import CharacterDetail from "./CharacterDetail";
 
 class App extends React.Component {
   constructor(props) {
@@ -22,6 +24,16 @@ class App extends React.Component {
     this.setState({ inputText: ev.target.value });
   };
 
+  renderDetail = (props) => {
+    const routeCharacterId = props.match.params.characterId;
+    console.log(routeCharacterId);
+    const foundCharacter = this.state.characterList.find((character) => {
+      return parseInt(routeCharacterId) === character.id;
+    });
+    console.log(foundCharacter);
+    return <CharacterDetail characterInfo={foundCharacter} />;
+  };
+
   render() {
     const filteredCharacter = this.state.characterList.filter((character) => {
       return character.name
@@ -30,11 +42,19 @@ class App extends React.Component {
     });
 
     return (
-      <div className="App">
+      <>
         <Header />
-        <Filters handleInputChange={this.handleInputChange} />
-        <CharacterList data={filteredCharacter} />
-      </div>
+        <Switch>
+          <Route exact path="/">
+            <Filters handleInputChange={this.handleInputChange} />
+            <CharacterList data={filteredCharacter} />
+          </Route>
+          <Route
+            path="/character-detail/:characterId"
+            component={this.renderDetail}
+          ></Route>
+        </Switch>
+      </>
     );
   }
 }
