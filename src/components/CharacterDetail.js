@@ -7,13 +7,15 @@ const CharacterDetail = (props) => {
     props.characterInfo || {};
 
   return (
-    <div>
+    <div className="character-detail-container">
       <Link to="/">
-        <button>Volver</button>
+        <div className="back-btn-container">
+          <button className="back-btn">Volver</button>
+        </div>
       </Link>
       {props.characterInfo ? (
-        <div>
-          <img src={image} alt={name} />
+        <div className="character-detail">
+          <img className="card-img" src={image} alt={name} />
           <div>
             <h2>{name}</h2>
             <p>Estado: {status}</p>
@@ -23,7 +25,7 @@ const CharacterDetail = (props) => {
           </div>
         </div>
       ) : (
-        <p>No existe</p>
+        <p className="no-results">No existe</p>
       )}
     </div>
   );

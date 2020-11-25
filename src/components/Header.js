@@ -3,9 +3,9 @@ import logo from "../images/Rick_and_Morty_-_logo.png";
 
 const Header = () => {
   return (
-    <header>
+    <header className="header">
       <div>
-        <img src={logo} alt="logo" />
+        <img className="logo" src={logo} alt="logo" />
       </div>
     </header>
   );

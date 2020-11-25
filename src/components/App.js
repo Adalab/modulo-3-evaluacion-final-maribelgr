@@ -10,12 +10,12 @@ import CharacterDetail from "./CharacterDetail";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { characterList: [], inputText: "" };
+    this.state = { characterList: [], inputText: "", loading: "loading" };
   }
   componentDidMount() {
     //Cuando el componente ha sido montado, cojo el 2º then para setear el estado -modificar valor de ese estado- a la info de la api
     const data = api.getDataFromApi().then((data) => {
-      this.setState({ characterList: data.results });
+      this.setState({ characterList: data.results, loading: "done" });
     });
   }
 
@@ -50,19 +50,23 @@ class App extends React.Component {
     return (
       <>
         <Header />
-        <Switch>
-          <Route exact path="/">
-            <Filters
-              handleInputChange={this.handleInputChange}
-              inputValue={this.state.inputText}
-            />
-            <CharacterList data={filteredCharacter} />
-          </Route>
-          <Route
-            path="/character-detail/:characterId"
-            component={this.renderDetail}
-          ></Route>
-        </Switch>
+        {this.state.loading === "loading" ? (
+          <p>Cargando datos</p>
+        ) : (
+          <Switch>
+            <Route exact path="/">
+              <Filters
+                handleInputChange={this.handleInputChange}
+                inputValue={this.state.inputText}
+              />
+              <CharacterList data={filteredCharacter} />
+            </Route>
+            <Route
+              path="/character-detail/:characterId"
+              component={this.renderDetail}
+            ></Route>
+          </Switch>
+        )}
       </>
     );
   }

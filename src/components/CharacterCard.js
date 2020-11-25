@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 
 const CharacterCard = (props) => {
   return (
-    <Link to={`/character-detail/${props.id}`}>
-      <div>
-        <img src={props.img} alt={props.name} />
+    <div>
+      <Link to={`/character-detail/${props.id}`}>
         <div>
-          <h2>{props.name}</h2>
-          <p>{props.species}</p>
+          <img className="card-img" src={props.img} alt={props.name} />
+          <div className="card-data">
+            <h2 className="card-title">{props.name}</h2>
+            <p className="card-description">{props.species}</p>
+          </div>
         </div>
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
 

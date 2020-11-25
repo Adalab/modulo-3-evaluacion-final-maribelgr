@@ -12,16 +12,19 @@ const Filters = (props) => {
   };
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        placeholder="Busca aquí tu personaje"
-        onChange={handleInputChange}
-        value={props.inputValue}
-      ></input>
-    </form>
+    <div>
+      <form className="form" onSubmit={handleFormSubmit}>
+        <input
+          className="input"
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Busca aquí tu personaje"
+          onChange={handleInputChange}
+          value={props.inputValue}
+        ></input>
+      </form>
+    </div>
   );
 };
 
